@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" role="img" aria-label="Combo sentadilla y rodilla al pecho">
+  <rect width="200" height="200" rx="20" fill="#eef3fe"/>
+  <line x1="12" y1="172" x2="188" y2="172" stroke="#9aa3b2" stroke-width="3" stroke-linecap="round"/>
+  <g stroke="#1f2430" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" fill="none">
+    <polyline points="34,126 64,126 60,168"/>
+    <line x1="34" y1="126" x2="46" y2="96"/>
+    <polyline points="46,99 57,108 54,101"/>
+    <line x1="140" y1="82" x2="140" y2="118"/>
+    <line x1="140" y1="118" x2="140" y2="168"/>
+    <polyline points="140,118 164,110 162,138"/>
+    <polyline points="140,86 153,95 150,88"/>
+  </g>
+  <circle cx="50" cy="84" r="10" fill="#1f2430"/>
+  <circle cx="60" cy="111" r="8" fill="#2f6fed"/>
+  <circle cx="140" cy="68" r="10" fill="#1f2430"/>
+  <circle cx="156" cy="98" r="8" fill="#2f6fed"/>
+  <path d="M84 120 h32 m-8 -7 l8 7 l-8 7" stroke="#2f6fed" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

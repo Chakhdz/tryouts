@@ -2,6 +2,17 @@
   const STORAGE_KEY = "ejercicios-habitos.routines";
   const WEEK_KEY = "ejercicios-habitos.week";
   const DAYS = ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo"];
+  const PRESETS = [
+    {
+      name: "Kettlebell: sentadilla + rodilla",
+      description: "Basada en video de TikTok (@onekettlebellworkout)",
+      exercises: [
+        { name: "Sentadilla goblet", sets: 4, reps: 12, image: "images/sentadilla-goblet.svg" },
+        { name: "Rodilla al pecho alternada", sets: 4, reps: 20, image: "images/rodilla-al-pecho.svg" },
+        { name: "Combo sentadilla + rodilla", sets: 3, reps: 10, image: "images/combo-sentadilla-rodilla.svg" },
+      ],
+    },
+  ];
 
   const form = document.getElementById("routine-form");
   const formTitle = document.getElementById("form-title");
@@ -17,6 +28,7 @@
   const routineList = document.getElementById("routine-list");
   const emptyState = document.getElementById("empty-state");
   const weekPlanList = document.getElementById("week-plan");
+  const presetList = document.getElementById("preset-list");
 
   let routines = loadRoutines();
   let week = loadWeek();
@@ -229,17 +241,72 @@
 
       const list = document.createElement("ol");
       list.className = "routine-exercises";
-      routine.exercises.forEach((ex) => {
-        const item = document.createElement("li");
-        item.textContent = `${ex.name} · ${ex.sets} × ${ex.reps}`;
-        list.appendChild(item);
-      });
+      routine.exercises.forEach((ex) => list.appendChild(exerciseItem(ex)));
 
       li.append(row, list);
       routineList.appendChild(li);
     });
 
     renderWeek();
+  }
+
+  function exerciseItem(ex) {
+    const item = document.createElement("li");
+    if (ex.image) {
+      const img = document.createElement("img");
+      img.src = ex.image;
+      img.alt = ex.name;
+      img.className = "exercise-img";
+      item.appendChild(img);
+    }
+    const text = document.createElement("span");
+    text.textContent = `${ex.name} · ${ex.sets} × ${ex.reps}`;
+    item.appendChild(text);
+    return item;
+  }
+
+  function renderPresets() {
+    presetList.innerHTML = "";
+
+    PRESETS.forEach((preset) => {
+      const li = document.createElement("li");
+
+      const row = document.createElement("div");
+      row.className = "routine-row";
+
+      const info = document.createElement("div");
+      const title = document.createElement("strong");
+      title.textContent = preset.name;
+      const meta = document.createElement("p");
+      meta.className = "routine-meta";
+      meta.textContent = preset.description;
+      info.append(title, meta);
+
+      const addBtn = document.createElement("button");
+      addBtn.type = "button";
+      addBtn.className = "btn primary";
+      addBtn.textContent = "Agregar";
+      addBtn.addEventListener("click", () => {
+        routines.push({
+          id: newId(),
+          createdAt: new Date().toISOString(),
+          name: preset.name,
+          description: preset.description,
+          exercises: preset.exercises.map((ex) => ({ ...ex })),
+        });
+        saveRoutines();
+        renderRoutines();
+      });
+
+      row.append(info, addBtn);
+
+      const list = document.createElement("ol");
+      list.className = "routine-exercises";
+      preset.exercises.forEach((ex) => list.appendChild(exerciseItem(ex)));
+
+      li.append(row, list);
+      presetList.appendChild(li);
+    });
   }
 
   function renderWeek() {
@@ -293,5 +360,6 @@
   form.addEventListener("submit", handleSubmit);
 
   renderDraft();
+  renderPresets();
   renderRoutines();
 })();

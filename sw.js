@@ -1,4 +1,4 @@
-const CACHE_NAME = "ejercicios-habitos-v2";
+const CACHE_NAME = "ejercicios-habitos-v3";
 const ASSETS = [
   "./",
   "./index.html",
@@ -8,6 +8,9 @@ const ASSETS = [
   "./icons/apple-touch-icon.png",
   "./icons/icon-192.png",
   "./icons/icon-512.png",
+  "./images/sentadilla-goblet.svg",
+  "./images/rodilla-al-pecho.svg",
+  "./images/combo-sentadilla-rodilla.svg",
 ];
 
 self.addEventListener("install", (event) => {

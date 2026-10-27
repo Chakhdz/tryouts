@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" role="img" aria-label="Sentadilla goblet">
+  <rect width="200" height="200" rx="20" fill="#eef3fe"/>
+  <line x1="20" y1="172" x2="180" y2="172" stroke="#9aa3b2" stroke-width="3" stroke-linecap="round"/>
+  <g stroke="#1f2430" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" fill="none">
+    <polyline points="78,118 122,118 116,168"/>
+    <line x1="78" y1="118" x2="96" y2="74"/>
+    <polyline points="96,78 112,92 108,82"/>
+  </g>
+  <circle cx="102" cy="58" r="13" fill="#1f2430"/>
+  <circle cx="116" cy="96" r="11" fill="#2f6fed"/>
+  <path d="M109 87 q7 -12 14 0" stroke="#2f6fed" stroke-width="4" fill="none"/>
+  <path d="M60 140 v-24 m-6 6 l6 -6 l6 6" stroke="#2f6fed" stroke-width="3" fill="none" stroke-linecap="round"/>
+</svg>

@@ -120,6 +120,8 @@ input:focus {
 
 .routine-meta { font-size: 0.9rem; color: var(--muted); margin: 4px 0 0; }
 .routine-exercises { margin: 8px 0 0; padding-left: 18px; font-size: 0.95rem; }
+.routine-list .routine-exercises li { flex-direction: row; justify-content: flex-start; align-items: center; gap: 10px; margin: 6px 0; padding: 0; border: 0; }
+.exercise-img { width: 64px; height: 64px; border-radius: 10px; flex-shrink: 0; }
 
 .actions { display: flex; gap: 6px; flex-shrink: 0; }
 
