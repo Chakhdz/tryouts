@@ -155,4 +155,16 @@ input:focus {
   .exercise-form { grid-template-columns: 1fr 1fr; }
   .exercise-form input[type="text"] { grid-column: 1 / -1; }
   .exercise-form button { grid-column: 1 / -1; }
+  .form-actions .btn { flex: 1; }
 }
+
+/* iPhone: evita zoom al enfocar campos y respeta la zona segura (notch) */
+input { font-size: 16px; }
+
+body {
+  padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+  -webkit-tap-highlight-color: transparent;
+}
+
+.btn { min-height: 40px; }
+.btn.icon { min-height: 32px; }
