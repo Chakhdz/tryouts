@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ejercicios y Hábitos</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="app-header">
+    <h1>Ejercicios y Hábitos</h1>
+  </header>
+
+  <main>
+    <section class="card">
+      <div class="section-title">
+        <h2 id="form-title">Nueva rutina</h2>
+      </div>
+
+      <form id="routine-form" autocomplete="off">
+        <label>
+          Nombre de la rutina
+          <input type="text" id="routine-name" required maxlength="60" placeholder="Ej. Piernas lunes">
+        </label>
+
+        <label>
+          Descripción <span class="muted">(opcional)</span>
+          <input type="text" id="routine-description" maxlength="120" placeholder="Ej. Enfoque en glúteos">
+        </label>
+
+        <h3>Ejercicios</h3>
+        <ul id="exercise-list" class="exercise-list"></ul>
+
+        <div class="exercise-form">
+          <input type="text" id="exercise-name" maxlength="60" placeholder="Ejercicio, ej. Sentadillas">
+          <input type="number" id="exercise-sets" min="1" max="99" value="3" aria-label="Series">
+          <input type="number" id="exercise-reps" min="1" max="999" value="10" aria-label="Repeticiones">
+          <button type="button" id="add-exercise" class="btn secondary">Agregar</button>
+        </div>
+
+        <div class="form-actions">
+          <button type="button" id="cancel-edit" class="btn ghost hidden">Cancelar</button>
+          <button type="submit" class="btn primary">Guardar rutina</button>
+        </div>
+        <p id="form-error" class="error hidden" role="alert"></p>
+      </form>
+    </section>
+
+    <section class="card">
+      <div class="section-title">
+        <h2>Mis rutinas</h2>
+      </div>
+      <ul id="routine-list" class="routine-list"></ul>
+      <p id="empty-state" class="muted hidden">Aún no tienes rutinas. Crea la primera arriba.</p>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
