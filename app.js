@@ -1,5 +1,7 @@
 (() => {
   const STORAGE_KEY = "ejercicios-habitos.routines";
+  const WEEK_KEY = "ejercicios-habitos.week";
+  const DAYS = ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo"];
 
   const form = document.getElementById("routine-form");
   const formTitle = document.getElementById("form-title");
@@ -14,8 +16,10 @@
   const errorEl = document.getElementById("form-error");
   const routineList = document.getElementById("routine-list");
   const emptyState = document.getElementById("empty-state");
+  const weekPlanList = document.getElementById("week-plan");
 
   let routines = loadRoutines();
+  let week = loadWeek();
   let draftExercises = [];
   let editingId = null;
 
@@ -28,11 +32,28 @@
     }
   }
 
+  function loadWeek() {
+    try {
+      const data = JSON.parse(localStorage.getItem(WEEK_KEY));
+      return data && typeof data === "object" ? data : {};
+    } catch {
+      return {};
+    }
+  }
+
   function saveRoutines() {
     try {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(routines));
     } catch {
       showError("No se pudo guardar en este navegador.");
+    }
+  }
+
+  function saveWeek() {
+    try {
+      localStorage.setItem(WEEK_KEY, JSON.stringify(week));
+    } catch {
+      showError("No se pudo guardar el plan semanal.");
     }
   }
 
@@ -128,7 +149,11 @@
     if (!confirm(`¿Eliminar la rutina "${routine.name}"?`)) return;
 
     routines = routines.filter((r) => r.id !== id);
+    DAYS.forEach((_, index) => {
+      if (week[index] === id) delete week[index];
+    });
     saveRoutines();
+    saveWeek();
     if (editingId === id) resetForm();
     renderRoutines();
   }
@@ -212,6 +237,48 @@
 
       li.append(row, list);
       routineList.appendChild(li);
+    });
+
+    renderWeek();
+  }
+
+  function renderWeek() {
+    weekPlanList.innerHTML = "";
+
+    DAYS.forEach((day, index) => {
+      const li = document.createElement("li");
+
+      const label = document.createElement("span");
+      label.className = "day-label";
+      label.textContent = day;
+
+      const select = document.createElement("select");
+      select.setAttribute("aria-label", `Rutina del ${day}`);
+
+      const rest = document.createElement("option");
+      rest.value = "";
+      rest.textContent = "Descanso";
+      select.appendChild(rest);
+
+      routines.forEach((routine) => {
+        const option = document.createElement("option");
+        option.value = routine.id;
+        option.textContent = routine.name;
+        select.appendChild(option);
+      });
+
+      select.value = week[index] || "";
+      select.addEventListener("change", () => {
+        if (select.value) {
+          week[index] = select.value;
+        } else {
+          delete week[index];
+        }
+        saveWeek();
+      });
+
+      li.append(label, select);
+      weekPlanList.appendChild(li);
     });
   }
 

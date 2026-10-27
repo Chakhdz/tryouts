@@ -147,6 +147,34 @@ input:focus {
   margin-top: 16px;
 }
 
+.week-plan {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 8px;
+}
+
+.week-plan li {
+  display: grid;
+  grid-template-columns: 110px 1fr;
+  align-items: center;
+  gap: 12px;
+}
+
+.day-label { font-weight: 500; }
+
+select {
+  font: inherit;
+  font-size: 16px;
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--bg);
+  color: var(--text);
+  width: 100%;
+}
+
 .muted { color: var(--muted); font-weight: 400; }
 .error { color: var(--danger); margin: 8px 0 0; }
 .hidden { display: none !important; }
